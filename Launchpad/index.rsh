@@ -1,15 +1,16 @@
-'reach 0.1';
 /*This file is part of Launchpad.
 
 Launchpad is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 Launchpad is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with Launchpad. If not, see <https://www.gnu.org/licenses/>.*/
+You should have received a copy of the GNU General Public License along with Launchpad. If not, see <https://www.gnu.org/licenses/>.
 
 Written by BunsanMuchi for Vestige.Fi
 Special thanks to Greg, Swag and Zykoz, without them this project would've never seen the light of day.
 */
+
+'reach 0.1';
 
 const State = Tuple(Address, Token, UInt, UInt, UInt, UInt, UInt, UInt, Bool)
 
@@ -141,7 +142,7 @@ export const payVestIDO = Reach.App(() => {
 
     assume(tokenOffered != null)
     assume(tokenForFee != tokenOffered)
-    assume(amountOffered > 0)
+    assume(amountOffered >  1_000_000)
     assume(amountOffered < UInt.max)
   });
 
@@ -155,7 +156,7 @@ export const payVestIDO = Reach.App(() => {
 
   require(tokenOffered != null)
   require(tokenForFee != tokenOffered)
-  require(amountOffered > 0)
+  require(amountOffered >  1_000_000)
   require(amountOffered < UInt.max)
 
   const mContract = remote(managerContract, { AdminAPI_getInfo: Fun([], Tuple(UInt, UInt, UInt, Address)) })
@@ -434,7 +435,7 @@ export const payAlgoIDO = Reach.App(() => {
     } = declassify(interact.setParam());
 
     assume(tokenOffered != null)
-    assume(amountOffered > 0)
+    assume(amountOffered >  1_000_000)
     assume(amountOffered < UInt.max)
   });
 
@@ -446,7 +447,7 @@ export const payAlgoIDO = Reach.App(() => {
     managerContract);
 
   require(tokenOffered != null)
-  require(amountOffered > 0)
+  require(amountOffered >= 1_000_000)
   require(amountOffered < UInt.max)
 
   const mContract = remote(managerContract, { AdminAPI_getInfo: Fun([], Tuple(UInt, UInt, UInt, Address)) })
